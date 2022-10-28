@@ -21,11 +21,11 @@ function install_docker() {
 
     sudo mkdir -p /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-    echo
+    echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt-get update
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 }
 
 function install_nginx () {
@@ -60,7 +60,7 @@ all="--all"
 a="-a"
 
 
-if [ $1 = $all ] || [ $1 = $a ]; then
+if [[ $1 = $all ]] || [[ $1 = $a ]]; then
     echo "Installing docker, nginx, mysql, php, xray"
     deb_update
     set_time
@@ -71,6 +71,8 @@ if [ $1 = $all ] || [ $1 = $a ]; then
     get_wordpress
     install_xray
 else
+    deb_update
+    set_time
     # dead loop
     while true; do
         echo "Please select the service you want to install"
@@ -85,38 +87,24 @@ else
         read -p "Please enter your choice: " choice
         case $choice in
             1)
-                deb_update
-                set_time
                 install_docker
                 ;;
             2)
-                deb_update
-                set_time
                 install_nginx
                 ;;
             3)
-                deb_update
-                set_time
                 install_mysql
                 ;;
             4)
-                deb_update
-                set_time
                 install_php
                 ;;
             5)
-                deb_update
-                set_time
                 get_wordpress
                 ;;
             6)
-                deb_update
-                set_time
                 install_xray
                 ;;
             7)
-                deb_update
-                set_time
                 install_docker
                 install_nginx
                 install_mysql
