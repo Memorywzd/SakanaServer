@@ -44,7 +44,7 @@ function install_xray () {
     wget https://github.com/XTLS/Xray-install/raw/main/install-release.sh
     sudo bash install-release.sh
     rm ~/install-release.sh
-    mkdir -p /usr/local/etc/xray/xray_cert
+    mkdir -p /usr/local/etc/xray/cert
 }
 
 function get_wordpress () {
