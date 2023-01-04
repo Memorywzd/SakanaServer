@@ -52,7 +52,7 @@ function get_wordpress () {
     wget https://cn.wordpress.org/latest-zh_CN.zip
     sudo apt install unzip -y
     unzip latest-zh_CN.zip
-    sudo mv wordpress/ /var/www/html/wordpress
+    sudo mv wordpress/ /var/www/wordpress
     sudo chown -R www-data:www-data /var/www/html/wordpress
     sudo chmod -R 775 /var/www/html/wordpress
 }
