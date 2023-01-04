@@ -45,6 +45,7 @@ function install_xray () {
     sudo bash install-release.sh
     rm ~/install-release.sh
     mkdir -p /usr/local/etc/xray/cert
+    sysctl -w net.core.rmem_max=2500000
 }
 
 function get_wordpress () {
